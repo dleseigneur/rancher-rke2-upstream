@@ -1,0 +1,16 @@
+system-default-registry: "AMODIFIER"
+token-file: "/tmp/rke2pe/token"
+# bug impossible de mettre un node role worker
+# les labels fonctionnent role=worker mais inutile
+# node-label:
+#   - "node-role.kubernetes.io/worker=true"
+kubelet-arg:
+  - "eviction-hard=imagefs.available<15%,memory.available<100Mi,nodefs.available<10%,nodefs.inodesFree<5%"
+  - "eviction-pressure-transition-period=5m0s"
+  - "image-gc-high-threshold=65"
+  - "image-gc-low-threshold=50"
+  - "oom-score-adj=-999"
+  - "v=8"
+cloud-provider-name: "rancher-vsphere"
+cloud-provider-config: "/etc/rancher/rke2/vsphere.conf"
+

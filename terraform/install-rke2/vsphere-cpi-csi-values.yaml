@@ -1,0 +1,40 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: rancher-vsphere-cpi
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    vCenter:
+      host: valueterraform.vsphere-vcenter
+      datacenters: valueterraform.vsphere-datacenter
+      username: valueterraform.vsphere-user
+      password: valueterraform.vsphere-password
+      credentialsSecret:
+        generate: true
+    cloudControllerManager:
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: "true"
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: rancher-vsphere-csi
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    vCenter:
+      host: valueterraform.vsphere-vcenter
+      datacenters: valueterraform.vsphere-datacenter
+      username: valueterraform.vsphere-user
+      password: valueterraform.vsphere-password
+      clusterId: valueterraform.rancher2_nom_cluster
+      configSecret:
+        generate: true
+    csiController:
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: "true"
+    storageClass:
+      name: "sc-defaut-01"
+      isDefault: true
+      storagePolicyName: "rke2-storage-policy"

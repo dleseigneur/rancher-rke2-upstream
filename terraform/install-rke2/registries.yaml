@@ -1,0 +1,16 @@
+mirrors:
+  docker.io:
+    endpoint:
+      - "https://docker.io"
+  gcr.io:
+    endpoint:
+      - "https://gcr.io"
+  k8s.gcr.io:
+    endpoint:
+      - "https://k8s.gcr.io"
+  quay.io:
+    endpoint:
+      - "https://quay.io"
+  "*":
+    endpoint:
+      - "https://AMODIFIER_MAREGISTRIE"
