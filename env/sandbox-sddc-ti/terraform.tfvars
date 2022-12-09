@@ -12,8 +12,8 @@ environnement = "sandbox-sddc-ti"
 master-count = 1
 # VM master
 vm-prefix-master = "rke2-master"
-vm-cpu-master = "AMODIFIER"
-vm-ram-master = "AMODIFIER"
+vm-cpu-master = "2"
+vm-ram-master = "8192"
 
 
 # We define how many worker nodes
@@ -29,42 +29,42 @@ worker-count = {
 
 # VM worker
 vm-prefix-worker = "rke2-worker"
-vm-cpu-worker = "AMODIFIER"
-vm-ram-worker = "AMODIFIER"
+vm-cpu-worker = "4"
+vm-ram-worker = "16384"
 
 # Customisation US
-vm-domain-name = "AMODIFIER"
-vm-disk-data-size = "AMODIFIER"
+vm-domain-name = "MYDOMAIN"
+vm-disk-data-size = "200"
 
 
 # VM Common Configuration
 vm-template-name = "tsles15sp3-rke2-1.21.7"
 vm-guest-id = "sles15_64Guest"
-vm-network = "AMODIFIER"
+vm-network = "seg-applis-2600"
 vm-domain = "rke2.local"
-vm-dns-search = ["AMODIFIER"]
-vm-dns-servers = ["AMODIFIER"]
+vm-dns-search = ["MYDOMAIN1.fr", "MYDOMAIN2.fr", "MYDOMAIN1.fr"]
+vm-dns-servers = ["MYIP1", "MYIP2"]
 
 # vSphere configuration
-vsphere-vcenter = "AMODIFIER"
-vsphere-user = "AMODIFIER"
-vsphere-password = "AMODIFIER"
-vsphere-unverified-ssl = "AMODIFIER"
-vsphere-datacenter = "AMODIFIER"
+vsphere-vcenter = "MYVCENTER"
+vsphere-user = "MYUSER"
+vsphere-password = "MYPASSWORD"
+vsphere-unverified-ssl = "true"
+vsphere-datacenter = "TZ-SB-WLD01"
 vsphere-cluster = {
-  az1 = "AMODIFIER"
-  az2 = "AMODIFIER"
-  az3 = "AMODIFIER"
+  az1 = "CL_TZ_SB_WLD01_01"
+  az2 = "CL_TZ_SB_WLD01_01"
+  az3 = "CL_TZ_SB_WLD01_01"
 }
 
 vm-datastore = {
-  az1 = "AMODIFIER"
-  az2 = "AMODIFIER"
-  az3 = "AMODIFIER"
+  az1 = "DS_TZ_SB_vSAN_WLD01_01"
+  az2 = "DS_TZ_SB_vSAN_WLD01_02"
+  az3 = "DS_TZ_SB_vSAN_WLD01_03"
 }
 
 dvs = {
-  az1 = "AMODIFIER"
-  az2 = "AMODIFIER"
-  az3 = "AMODIFIER"
+  az1 = "DVS_TZ_SB_WLD01_01"
+  az2 = "DVS_TZ_SB_WLD01_02"
+  az3 = "DVS_TZ_SB_WLD01_03"
 }
