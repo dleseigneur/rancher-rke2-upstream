@@ -64,17 +64,18 @@ contient les clé ssh pour se connecter au VM.
 **TODO**: mettre les clé dans un vault
 
 # Deploiement
-Exemple avec un environnement `ti`
+Exemple avec un environnement `sandbox-sddc-ti`
 ```bash
-# terraform apply -var-file ./env/ti/terraform.tfvars -state=./env/ti/terraform.tfstate -backup="-" -auto-approve
+# cd terraform; terraform init
+# terraform apply -var-file ./env/sandbox-sddc-ti/terraform.tfvars -state=./env/sandbox-sddc-ti/terraform.tfstate -backup="-" -auto-approve
 ```
 ## Récupération du KUBECONFIG
 Cette partie reste à automatiser.
 
 Une fois le cluster créé, il faut adapter le fichier KUBECONFIG (soit le fichier `rke2.yaml` d'origine).
 ```bash
-sed -i 's/127.0.0.1/ipmaster/' env/sandbox-sddc-ti/rke2.yaml
-sed -i 's/default/nomcluster/' env/sandbox-sddc-ti/rke2.yaml
+sed -i 's/127.0.0.1/ipmaster/' ../env/sandbox-sddc-ti/rke2.yaml
+sed -i 's/default/nomcluster/' ../env/sandbox-sddc-ti/rke2.yaml
 ```
 
 
