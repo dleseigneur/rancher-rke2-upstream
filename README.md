@@ -27,8 +27,8 @@ strategie et profile, stockage , créer `rke-storage-policy`
 |  `main.tf`   | définition de toutes les étapes pour: <br/> création VM vsphere<br/>cluster `rke2 1.21.7`|
 
 ## Répertoire env
-Exemple avec l'environnement Test Intégration `ti`   
-**Important** le nom du répertoire sous `env/ti` doit être identique à la valeur de la variable `environnement = ti` dans le fichier `terraform.tfvars.
+Exemple avec l'environnement Test Intégration `upstream-ti`   
+**Important** le nom du répertoire sous `env/upstream-ti` doit être identique à la valeur de la variable `environnement = upstream-ti` dans le fichier `terraform.tfvars.
 
 | `Répertoire` | `Fichiers` | `Description` | 
 | :------: |  :------: | :------: |

@@ -28,7 +28,7 @@ Copier le fichier ./keys/rkeid_rsa.pub en /root/.ssh/authorized_keys
 Depuis un poste de travail linux :
 
 ```bash
-# openssl x509 -in /usr/local/share/ca-certificates/MYCERT -text > ac_pe_apps.crt
+# openssl x509 -in /usr/local/share/ca-certificates/MYCERT -text > MYAC.crt
 # scp -i keys/rkeid_rsa MYAC.crt root@10.xx.xx.xx:/etc/pki/trust/anchors/
 # ssh -i keys/rkeid_rsa root@10.xx.xx.xx
 # update-ca-certificates
