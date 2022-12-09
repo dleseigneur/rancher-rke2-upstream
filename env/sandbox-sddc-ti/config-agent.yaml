@@ -1,4 +1,4 @@
-system-default-registry: "AMODIFIER"
+system-default-registry: "MYREGISTRY"
 token-file: "/tmp/rke2pe/token"
 # bug impossible de mettre un node role worker
 # les labels fonctionnent role=worker mais inutile

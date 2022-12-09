@@ -13,4 +13,4 @@ mirrors:
       - "https://quay.io"
   "*":
     endpoint:
-      - "https://AMODIFIER_MAREGISTRIE"
+      - "https://MYREGISTRY"

@@ -33,7 +33,7 @@ Exemple avec l'environnement Test Intégration `ti`
 | `Répertoire` | `Fichiers` | `Description` | 
 | :------: |  :------: | :------: |
 |  `env`   | **N/A** | centralisation des environnements, backup terraform |
-|  `env/ti`| | |
+|  `env/sandbox-sddc-ti`| | |
 | | **terraform.tfvars** | variables terraform pour création VM + cluster rke2 |
 | | **terrform.tfstate** | **important** permet de garantir la cohérence du cluster TI |
 | | **config-agent.yaml** | configuration worker cluster rke2 |
@@ -116,7 +116,7 @@ sed -i 's/ghcr.io/AMODIFIER_MAREGISTRIE/' kube-vip-daemonset.yaml
 
 Déployer kube-vip sur le cluster :
 ```
-kctx sandbox-sddc-rancher-ti
+kctx sandbox-sddc-ti
 kubectl apply -f https://kube-vip.io/manifests/rbac.yaml #Installation des RBACs
 
 kubectl apply -f kube-vip-daemonset.yaml # Deploiement du daemonset
@@ -146,13 +146,6 @@ kubectl get clusters.management.cattle.io #pour identifier le clusterID correspo
 kubectl patch clusters.management.cattle.io <mon_cluster_id> -p '{"metadata":{"finalizers":[]}}' --type=merge
 ```
 
-# MVP :
-Avoir 1 cluster rke2 `ascode` répétable, à minima avec 1 master/3 worker, scale
 
-| `USx`: **cluster rke2** |
-| --- |
-| <ul><li>- [x] création Tests Unitaires </li><ul> |
-| <ul><li>- [x] création Tests Intégrations </li><ul> |
-| <ul><li>- [x] création de la CI </li><ul> |
 
 

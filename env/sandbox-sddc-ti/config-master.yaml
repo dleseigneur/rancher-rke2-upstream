@@ -1,12 +1,12 @@
-system-default-registry: "AMODIFIER_MAREGISTRIE"
-cluster-cidr: "AMODIFIER_RANGEIP01/16"
-service-cidr: "AMODIFIER_RANGEIP02/16"
+system-default-registry: "MYREGISTRY"
+cluster-cidr: "MYRANGEIP01/16"
+service-cidr: "MYRANGEIP02/16"
 cni: "calico"
 disable: "rke2-ingress-nginx"
 token-file: "/tmp/rke2pe/token"
 write-kubeconfig-mode: "0644"
 tls-san:
-  - "AMODIFIER"
+  - "MYTLSSAN"
 kubelet-arg:
   - "eviction-hard=imagefs.available<15%,memory.available<100Mi,nodefs.available<10%,nodefs.inodesFree<5%"
   - "eviction-pressure-transition-period=5m0s"
