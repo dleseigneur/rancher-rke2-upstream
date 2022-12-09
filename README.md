@@ -65,9 +65,18 @@ contient les clé ssh pour se connecter au VM.
 
 # Deploiement
 Exemple avec un environnement `sandbox-sddc-ti`
+**Avant de commencer mettre à jour les fichiers** :
+- [terraform.tfvars](./env/sandbox-sddc-ti/terraform.tfvars)
+- [config-server.yaml](./env/sandbox-sddc-ti/config-server.yaml)
+- [config-master.yaml](./env/sandbox-sddc-ti/config-master.yaml)
+- [config-agent.yaml](./env/sandbox-sddc-ti/config-agent.yaml)
+- [registries.yaml](./terraform/install-rke2/registries.yaml)
+- [rkeid_rsa](./terraform/keys/rkeid_rsa)
+- [rkeid_rsa.pub](./terraform/keys/rkeid_rsa.pub)
+
 ```bash
 # cd terraform; terraform init
-# terraform apply -var-file ./env/sandbox-sddc-ti/terraform.tfvars -state=./env/sandbox-sddc-ti/terraform.tfstate -backup="-" -auto-approve
+# terraform apply -var-file ../env/sandbox-sddc-ti/terraform.tfvars -state=../env/sandbox-sddc-ti/terraform.tfstate -backup="-" -auto-approve
 ```
 ## Récupération du KUBECONFIG
 Cette partie reste à automatiser.
