@@ -33,7 +33,7 @@ Exemple avec l'environnement Test Intégration `ti`
 | `Répertoire` | `Fichiers` | `Description` | 
 | :------: |  :------: | :------: |
 |  `env`   | **N/A** | centralisation des environnements, backup terraform |
-|  `env/sandbox-sddc-ti`| | |
+|  `env/upstream-ti`| | |
 | | **terraform.tfvars** | variables terraform pour création VM + cluster rke2 |
 | | **terrform.tfstate** | **important** permet de garantir la cohérence du cluster TI |
 | | **config-agent.yaml** | configuration worker cluster rke2 |
@@ -64,27 +64,27 @@ contient les clé ssh pour se connecter au VM.
 **TODO**: mettre les clé dans un vault
 
 # Deploiement
-Exemple avec un environnement `sandbox-sddc-ti`
+Exemple avec un environnement `upstream-ti`
 **Avant de commencer mettre à jour les fichiers** :
-- [terraform.tfvars](./env/sandbox-sddc-ti/terraform.tfvars)
-- [config-server.yaml](./env/sandbox-sddc-ti/config-server.yaml)
-- [config-master.yaml](./env/sandbox-sddc-ti/config-master.yaml)
-- [config-agent.yaml](./env/sandbox-sddc-ti/config-agent.yaml)
+- [terraform.tfvars](./env/upstream-ti/terraform.tfvars)
+- [config-server.yaml](./env/upstream-ti/config-server.yaml)
+- [config-master.yaml](./env/upstream-ti/config-master.yaml)
+- [config-agent.yaml](./env/upstream-ti/config-agent.yaml)
 - [registries.yaml](./terraform/install-rke2/registries.yaml)
 - [rkeid_rsa](./terraform/keys/rkeid_rsa)
 - [rkeid_rsa.pub](./terraform/keys/rkeid_rsa.pub)
 
 ```bash
 # cd terraform; terraform init
-# terraform apply -var-file ../env/sandbox-sddc-ti/terraform.tfvars -state=../env/sandbox-sddc-ti/terraform.tfstate -backup="-" -auto-approve
+# terraform apply -var-file ../env/upstream-ti/terraform.tfvars -state=../env/upstream-ti/terraform.tfstate -backup="-" -auto-approve
 ```
 ## Récupération du KUBECONFIG
 Cette partie reste à automatiser.
 
 Une fois le cluster créé, il faut adapter le fichier KUBECONFIG (soit le fichier `rke2.yaml` d'origine).
 ```bash
-sed -i 's/127.0.0.1/ipmaster/' ../env/sandbox-sddc-ti/rke2.yaml
-sed -i 's/default/nomcluster/' ../env/sandbox-sddc-ti/rke2.yaml
+sed -i 's/127.0.0.1/ipmaster/' ../env/upstream-ti/rke2.yaml
+sed -i 's/default/nomcluster/' ../env/upstream-ti/rke2.yaml
 ```
 
 
@@ -126,7 +126,7 @@ sed -i 's/ghcr.io/AMODIFIER_MAREGISTRIE/' kube-vip-daemonset.yaml
 
 Déployer kube-vip sur le cluster :
 ```
-kctx sandbox-sddc-ti
+kctx upstream-ti
 kubectl apply -f https://kube-vip.io/manifests/rbac.yaml #Installation des RBACs
 
 kubectl apply -f kube-vip-daemonset.yaml # Deploiement du daemonset
@@ -136,7 +136,7 @@ kubectl apply -f kube-vip-daemonset.yaml # Deploiement du daemonset
 
 L'IP De la VIP est à mettre dans le fichier `helm/env/<cluster>/values-kube-vip-chart.yaml`
 ```
-helm upgrade --install kube-vip kube-vip/kube-vip --version 0.4.2 --namespace kube-system -f helm/env/commun/values-kube-vip.yaml -f helm/env/sandbox-sddc-ti/values-kube-vip-chart.yaml
+helm upgrade --install kube-vip kube-vip/kube-vip --version 0.4.2 --namespace kube-system -f helm/env/commun/values-kube-vip.yaml -f helm/env/upstream-ti/values-kube-vip-chart.yaml
 ```
 
 Pour valider, remplacer, dans le fichier kubeconfig du cluster l'ip du master par le nom DNS du tls-san.

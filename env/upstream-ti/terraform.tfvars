@@ -1,8 +1,8 @@
 
 # Cluster à traiter
-rancher2_nom_cluster = "sandbox-sddc-rancher-ti"
+rancher2_nom_cluster = "upstream-rancher-ti"
 
-environnement = "sandbox-sddc-ti"
+environnement = "upstream-ti"
 ## Variables VMs
 # terraform.tfvars
 
